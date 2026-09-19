@@ -15,12 +15,11 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: curlimages/curl:8.10.1
+          image: python:3.12-alpine
           command:
             - sh
-            - "-c"
+            - -c
             - |
-              while true; do
-                echo "Frontend running..."
-                sleep 3600
-              done
+              mkdir -p /tmp/www
+              echo "Frontend is working" > /tmp/www/index.html
+              python3 -m http.server 5678 --directory /tmp/www
